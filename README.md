@@ -95,5 +95,4 @@ Import Grafana dashboards for Kubernetes and Prometheus metrics. Use the followi
 - [Grafana Dashboards](https://grafana.com/grafana/dashboards)
 - [Prometheus Dashboards](https://prometheus.io/docs/visualization/grafana/)
 
-![Uploading svd.PNG…]()
 
