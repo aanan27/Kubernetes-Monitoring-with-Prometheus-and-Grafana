@@ -29,17 +29,15 @@ minikube start
 Add the Prometheus Helm repository and install Prometheus using Helm.
 
 ```bash
-# Add Prometheus Helm repository
+
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 helm repo update
 
-# Install Prometheus
 helm install prometheus prometheus-community/prometheus
 
-# Expose Prometheus server
+
 kubectl expose service prometheus-server --type=NodePort --target-port=9090 --name=prometheus-server-ext
 
-# Access Prometheus via Minikube
 minikube service prometheus-server-ext
 ```
 
@@ -48,17 +46,16 @@ minikube service prometheus-server-ext
 Add the Grafana Helm repository and install Grafana using Helm.
 
 ```bash
-# Add Grafana Helm repository
+
 helm repo add grafana https://grafana.github.io/helm-charts
 helm repo update
 
-# Install Grafana
+
 helm install grafana stable/grafana
 
-# Expose Grafana service
+
 kubectl expose service grafana --type=NodePort --target-port=3000 --name=grafana-ext
 
-# Access Grafana via Minikube
 minikube service grafana-ext
 ```
 
@@ -67,14 +64,11 @@ minikube service grafana-ext
 Retrieve the username and password for Grafana.
 
 ```bash
-# Retrieve Grafana secret and decode password
 kubectl get secret --namespace default grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
 ```
 
 or
 
-```bash
-# Retrieve Grafana secret and decode password (alternative command)
 kubectl get secret --namespace default grafana -o yaml | grep "password:" | awk '{print $2}' | base64 --decode ; echo
 ```
 
